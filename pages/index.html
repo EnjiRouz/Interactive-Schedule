@@ -1,0 +1,149 @@
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
+		<script type="text/javascript" src="../js/redips-drag-min.js"></script>
+		<script type="text/javascript" src="../js/script.js"></script>
+		<title>Interactive Schedule</title>
+	</head>
+	<body>
+		<div class="container">
+			<div id="draggable-content" class="draggable-content-area">
+
+				<table id="curriculumTable" class="curriculumTable">
+					<colgroup>
+						<col width="50"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="100"/>
+					</colgroup>
+					<tbody>
+					<tr>
+						<td class="non-editable-table-cell dark" rowspan="4">Базовые дисциплины</td>
+						<td colspan="2" class="non-editable-table-cell dark">1 курс</td>
+						<td colspan="2" class="non-editable-table-cell dark">2 курс</td>
+						<td colspan="2" class="non-editable-table-cell dark">3 курс</td>
+						<td colspan="2" class="non-editable-table-cell dark">4 курс</td>
+					</tr>
+					<tr>
+						<td class="non-editable-table-cell dark">1 семестр</td>
+						<td class="non-editable-table-cell dark">2 семестр</td>
+						<td class="non-editable-table-cell dark">3 семестр</td>
+						<td class="non-editable-table-cell dark">4 семестр</td>
+						<td class="non-editable-table-cell dark">5 семестр</td>
+						<td class="non-editable-table-cell dark">6 семестр</td>
+						<td class="non-editable-table-cell dark">7 семестр</td>
+						<td class="non-editable-table-cell dark">8 семестр</td>
+					</tr>
+					<tr id="basic-subjects">
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Иностранный язык
+							• История
+							• Математический анализ
+							• Линейная алгебра
+							• Введение в специальность
+							• Программирование
+							• Информационные технологии и сервисы
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Иностранный язык
+							• Философия
+							• Физика
+							• Математический анализ
+							• Линейная алгебра
+							• Проектный практикум
+							• Программирование
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Практика эффективной коммуникации
+							• Физика
+							• Дискретная математика и математическая логика
+							• Проектный практикум
+							• Технологии программирования (сценарный язык)
+							• Базы данных
+							• Теория вероятности и математическая статистика
+							• Архитектура ЭВМ
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Основы безопасности жизнедеятельности
+							• Цифровые конечные автоматы
+							• Алгоритмы и анализ сложности
+							• Теория графов
+							• Проектный практикум
+							• Web-технологии
+							• Компьютерные сети
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Экономика
+							• Проектный практикум
+							• Системная инженерия
+							• Технология командной разработки программного обеспечения
+							• Операционные системы
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
+							• Правоведение
+							• Проектный практикум
+							• Моделирование сложных процессов и систем
+							• Управление проектами
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Проектный практикум
+							• Информационная безопасность
+							• Проектирование ИС
+							• Программная инженерия
+						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Выпускная квалификационная работа
+						</td>
+					</tr>
+					<tr>
+						<td class="non-editable-table-cell blank" colspan="8">Дисциплины на выбор</td>
+					</tr>
+					<tr>
+						<td class="non-editable-table-cell dark">Майнор 1</td>
+						<td class="non-editable-table-cell" colspan="2" rowspan="2">ВЫБОР НЕДОСТУПЕН</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td class="non-editable-table-cell" rowspan="2">ВЫБОР НЕДОСТУПЕН</td>
+					</tr>
+					<tr>
+						<td class="non-editable-table-cell dark">Майнор 2</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					</tbody>
+
+					<tbody id="subjectsOfChoiceTable" class="subjectsOfChoiceTable">
+						<tr>
+							<td class="non-editable-table-cell" colspan="9" rowspan="2">Доступные для выбора дисциплины </td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td><div id="ar" class="draggable-content ar">Линейная алгебра</div></td>
+							<td><div id="bi" class="draggable-content bi">Математический анализ</div></td>
+							<td><div id="ch" class="draggable-content ch">Тестирование ПО</div></td>
+							<td><div id="en" class="draggable-content en">Программирование на C#</div></td>
+							<td><div id="et" class="draggable-content et">Операционные системы</div></td>
+							<td><div id="hi" class="draggable-content hi">Физическая культура</div></td>
+							<td><div id="it" class="draggable-content it">Онлайн-курс на выбор</div></td>
+							<td><div id="ma" class="draggable-content ma">Менеджмент</div></td>
+							<td><div id="ph" class="draggable-content ph">UI/UX основы</div></td>
+						</tr>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
