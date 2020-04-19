@@ -3,8 +3,12 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
+
+		<script type="text/javascript" src="../js/json-templates.js"></script>
 		<script type="text/javascript" src="../js/redips-drag-min.js"></script>
+		<script type="text/javascript" src="../js/drag-n-drop.js"></script>
 		<script type="text/javascript" src="../js/script.js"></script>
+
 		<title>Interactive Schedule</title>
 	</head>
 	<body>
@@ -42,63 +46,14 @@
 						<td class="non-editable-table-cell dark">8 семестр</td>
 					</tr>
 					<tr id="basic-subjects">
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Иностранный язык
-							• История
-							• Математический анализ
-							• Линейная алгебра
-							• Введение в специальность
-							• Программирование
-							• Информационные технологии и сервисы
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Иностранный язык
-							• Философия
-							• Физика
-							• Математический анализ
-							• Линейная алгебра
-							• Проектный практикум
-							• Программирование
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Практика эффективной коммуникации
-							• Физика
-							• Дискретная математика и математическая логика
-							• Проектный практикум
-							• Технологии программирования (сценарный язык)
-							• Базы данных
-							• Теория вероятности и математическая статистика
-							• Архитектура ЭВМ
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Основы безопасности жизнедеятельности
-							• Цифровые конечные автоматы
-							• Алгоритмы и анализ сложности
-							• Теория графов
-							• Проектный практикум
-							• Web-технологии
-							• Компьютерные сети
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Экономика
-							• Проектный практикум
-							• Системная инженерия
-							• Технология командной разработки программного обеспечения
-							• Операционные системы
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Физическая культура
-							• Правоведение
-							• Проектный практикум
-							• Моделирование сложных процессов и систем
-							• Управление проектами
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Проектный практикум
-							• Информационная безопасность
-							• Проектирование ИС
-							• Программная инженерия
-						</td>
-						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic">• Выпускная квалификационная работа
-						</td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="1-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="2-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="3-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="4-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="5-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="6-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="7-semester"></td>
+						<td style="white-space: pre-line; text-align: left; vertical-align: top" class="non-editable-table-cell basic" id="8-semester"></td>
 					</tr>
 					<tr>
 						<td class="non-editable-table-cell blank" colspan="8">Дисциплины на выбор</td>

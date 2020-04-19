@@ -14,12 +14,15 @@ body{
 	font-weight: normal;
 }
 
+td{
+	width:100px;
+}
 .container {
 	margin: 10px 5%;
 }
 
 .draggable-content {
-	width: 100px;
+	width: 90px;
 	height: 40px;
 
 	margin: auto;
