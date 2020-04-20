@@ -56,17 +56,36 @@ function hideElementsWithClass(className){
 function initializeBaseSubjects(response) {
 	let baseSubjects = JSON.parse(response);
 
-	for (let i=0; i<8; i++) {
+	for (let i=0; i<Object.keys(baseSubjects).length; i++) {
 		getById(baseSubjects[i].id+"-semester").innerText=baseSubjects[i].subjects;
 	}
 }
 
+/**
+ * Инициализация дополнительных дисциплин
+ * @param response - ответ сервера
+ */
+function initializeExtraSubjects(response) {
+	let extraSubjects = JSON.parse(response);
+	let mySet = new Set();
+
+	for (let i = 0; i < Object.keys(extraSubjects).length; i++) {
+		mySet.add(extraSubjects[i].category);
+	}
+
+	console.log(mySet);
+}
 
 window.onload=function() {
 	initializeBaseSubjects(serverResponseBaseSubjects);
+	initializeExtraSubjects(serverResponseExtraSubjects)
 };
 
 
+// TODO create template for course element
+// TODO associate category with color in cycle way
+// TODO group 9 elements in colorful row by category name
+// TODO setup color as enum to use its number
 // TODO create courses templates with colors, right rows with the same category
 // TODO drag and drop out object (and move it to the right container)
 // TODO save table to make pdf and statistic table with user hashcode id
