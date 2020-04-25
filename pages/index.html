@@ -6,15 +6,20 @@
 
 		<script type="text/javascript" src="../js/json-templates.js"></script>
 		<script type="text/javascript" src="../js/redips-drag-min.js"></script>
+
+		<script type="text/javascript" src="../js/jspdf.min.js"></script>
+		<script type="text/javascript" src="../js/jspdf.plugin.autotable.js"></script>
+
 		<script type="text/javascript" src="../js/drag-n-drop.js"></script>
+		<script type="text/javascript" src="../js/encodedFont.js"></script>
 		<script type="text/javascript" src="../js/script.js"></script>
+
 
 		<title>Interactive Schedule</title>
 	</head>
 	<body>
 		<div class="container">
 			<div id="draggable-content" class="draggable-content-area">
-
 				<table id="curriculumTable" class="curriculumTable">
 					<colgroup>
 						<col width="100"/>
@@ -61,31 +66,34 @@
 					<tr>
 						<td class="non-editable-table-cell dark">Майнор 1</td>
 						<td class="non-editable-table-cell" colspan="2" rowspan="3">ВЫБОР НЕДОСТУПЕН</td>
-						<td rowspan="3"></td>
-						<td rowspan="2"></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td rowspan="3" class="extraSubject"></td>
+						<td rowspan="2" class="extraSubject"></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
 						<td class="non-editable-table-cell" rowspan="3">ВЫБОР НЕДОСТУПЕН</td>
 					</tr>
 					<tr>
 						<td class="non-editable-table-cell dark">Майнор 2</td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
 					</tr>
 					<tr>
 						<td class="non-editable-table-cell dark">Майнор 3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
+						<td class="extraSubject"></td>
 					</tr>
 					</tbody>
 
 					<tbody id="subjectsOfChoiceTable" class="subjectsOfChoiceTable">
 					</tbody>
 				</table>
+			</div>
+			<div class="center-container">
+				<button onclick="checkCells()">Сохранить как pdf</button>
 			</div>
 		</div>
 	</body>
