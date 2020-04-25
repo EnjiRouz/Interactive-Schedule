@@ -1,3 +1,13 @@
+const Colors = Object.freeze([
+	"red",
+	"pink",
+	"purple",
+	"blue",
+	"sea",
+	"green",
+	"yellow",
+]);
+
 /**
  * Получение элементов по id
  * @param id - идентификатор элемента
@@ -67,25 +77,57 @@ function initializeBaseSubjects(response) {
  */
 function initializeExtraSubjects(response) {
 	let extraSubjects = JSON.parse(response);
-	let mySet = new Set();
+	let categories = new Set();
 
+	// выделение множества категорий курсов
 	for (let i = 0; i < Object.keys(extraSubjects).length; i++) {
-		mySet.add(extraSubjects[i].category);
+		categories.add(extraSubjects[i].category);
 	}
 
-	console.log(mySet);
+	// создание ячеек с дополнительными дисциплиными, разделенных по цветам
+	let categoriesArray = Array.from(categories);
+	for (let i=0; i<categoriesArray.length; i++) {
+		let category = getById("subjectsOfChoiceTable");
+		category.innerHTML += "<tr><td class='non-editable-table-cell clickable "+ Colors[i] +"' colspan='9' id='category-"+ i +"' onclick='hideElementsWithClass("+'"'+ Colors[i] + '"' +")'>"+ categoriesArray[i] +" (скрыть) </td></tr>";
+
+		// подсчёт количества курсов для конкретной категории
+		let categoryCourses=[];
+		for (let j=0; j<Object.keys(extraSubjects).length; j++) {
+			if (categoriesArray[i] === extraSubjects[j].category) {
+				categoryCourses.push(extraSubjects[j].name);
+			}
+		}
+
+		// разделение курсов по строкам внутри категории
+		let coursesContent="";
+		for(let k=0; k<categoryCourses.length; k++){
+			if(k===0)
+				coursesContent += "<tr>";
+
+			if(k % 9===0 && k!==0)
+				coursesContent += "</tr><tr>";
+
+			coursesContent += "<td class='can-be-hidden'><div id='course-" + k + "_category-" + i + "' class='draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
+
+			// добавление ячеек в конец таблицы
+			if(k===categoryCourses.length-1) {
+				if(k % 9!==0) {
+					for(let m=0;m<9-k%9-1;m++)
+						coursesContent += "<td></td>"
+				}
+				coursesContent += "</tr>";
+			}
+		}
+		category.innerHTML+=coursesContent;
+	}
 }
+
 
 window.onload=function() {
 	initializeBaseSubjects(serverResponseBaseSubjects);
-	initializeExtraSubjects(serverResponseExtraSubjects)
+	initializeExtraSubjects(serverResponseExtraSubjects);
+	redips.init();
 };
 
-
-// TODO create template for course element
-// TODO associate category with color in cycle way
-// TODO group 9 elements in colorful row by category name
-// TODO setup color as enum to use its number
-// TODO create courses templates with colors, right rows with the same category
-// TODO drag and drop out object (and move it to the right container)
+// TODO drag and drop out object (and move it to the right container) <------think about attachment with id
 // TODO save table to make pdf and statistic table with user hashcode id
