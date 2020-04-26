@@ -1,3 +1,5 @@
+// Документация: https://www.redips.net/javascript/redips-drag-documentation/
+
 // create redips container
 let redips = {};
 

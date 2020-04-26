@@ -111,13 +111,13 @@ function initializeExtraSubjects(response) {
 			if(k % 9===0 && k!==0)
 				coursesContent += "</tr><tr>";
 
-			coursesContent += "<td class='can-be-hidden hide'><div id='course-" + k + "_category-" + i + "' class='draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
+			coursesContent += "<td class='non-editable-table-cell can-be-hidden hide'><div id='course-" + k + "_category-" + i + "' class='redips-clone draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
 
 			// добавление ячеек в конец таблицы
 			if(k===categoryCourses.length-1) {
 				if(k % 9!==0) {
 					for(let m=0;m<9-k%9-1;m++)
-						coursesContent += "<td class='can-be-hidden hide'><div class='non-editable-table-cell " + Colors[i] + "' style='display: none;'></div></td>"
+						coursesContent += "<td class='non-editable-table-cell can-be-hidden hide'><div class='non-editable-table-cell " + Colors[i] + "' style='display: none;'></div></td>"
 				}
 				coursesContent += "</tr>";
 			}
@@ -250,6 +250,4 @@ window.onload=function() {
 	redips.init();
 };
 
-// TODO drag and drop out object (and move it to the right container) <------think about attachment with id
-// TODO remove shift clone event (or make clonable object but do not let it go twice to table) cloned id example=course-4_category-0c1
 // TODO statistic table with user hashcode id
