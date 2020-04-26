@@ -111,7 +111,7 @@ function initializeExtraSubjects(response) {
 			if(k % 9===0 && k!==0)
 				coursesContent += "</tr><tr>";
 
-			coursesContent += "<td class='non-editable-table-cell can-be-hidden hide'><div id='course-" + k + "_category-" + i + "' class='redips-clone draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
+			coursesContent += "<td class='non-editable-table-cell can-be-hidden hide'><div id='course-" + k + "_category-" + i + "' class='cloneable-content draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
 
 			// добавление ячеек в конец таблицы
 			if(k===categoryCourses.length-1) {
@@ -152,7 +152,17 @@ function checkCells() {
 		}
 	}
 
-	if (nonEmptyCells === extraSubjectsCells.length)
+	// проверка на повторяющиеся курсы (можно использовать не название, а id, если потребуется)
+	let duplicates = userChoices.reduce((accumulatorArray, currentValue, index, array) => {
+		if(array.indexOf(currentValue)!==index && !accumulatorArray.includes(currentValue))
+			accumulatorArray.push(currentValue);
+		return accumulatorArray;
+	}, []);
+
+	// проверка возможности подготовки pdf-файла (если нет дубликатов и заполнены все ячейки)
+	if(duplicates.length>0)
+		alert("Курс может быть добавлен только один раз. Уберите или замените следующие повторяющиеся курсы: " + duplicates.join(', '));
+	else if (nonEmptyCells === extraSubjectsCells.length)
 		createPdf(userChoices);
 	else
 		alert("Остались незаполненные ячейки дополнительных дисциплин");
