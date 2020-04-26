@@ -36,6 +36,21 @@ function getByTag(tag){
 }
 
 /**
+ * Получение hashCode объекта типа string
+ */
+Object.defineProperty(String.prototype, 'hashCode', {
+	value: function() {
+		let hash = 0, i, chr;
+		for (i = 0; i < this.length; i++) {
+			chr   = this.charCodeAt(i);
+			hash  = ((hash << 5) - hash) + chr;
+			hash |= 0; // Convert to 32bit integer
+		}
+		return hash;
+	}
+});
+
+/**
  * Скрывает элементы заданного класса (в данном случае используется для таблицы курсов, которые можно скрыть/показать
  * в отдельной части таблицы, меняя при этом заголовок)
  * @param className имя класса, элементы которого требуется скрыть
@@ -251,7 +266,9 @@ function createPdf(userChoices) {
 		},
 		margin: {top: 60},
 	});
-	doc.save("student-program.pdf");
+
+	let userHashCode=userChoices.toString().hashCode();
+	doc.save("student-program-"+userHashCode+".pdf");
 }
 
 window.onload=function() {
@@ -259,5 +276,3 @@ window.onload=function() {
 	initializeExtraSubjects(serverResponseExtraSubjects);
 	redips.init();
 };
-
-// TODO statistic table with user hashcode id
