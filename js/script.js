@@ -127,6 +127,18 @@ function initializeExtraSubjects(response) {
 }
 
 /**
+ * Отчищение таблицы от выбранных курсов, чтобы можно было начать выбор заново
+ */
+function resetTable(){
+	let extraSubjectsCells = getByClassName("extraSubject");
+	for (let i = 0; i < extraSubjectsCells.length; i++) {
+		if (extraSubjectsCells[i].hasChildNodes() && !(extraSubjectsCells[i].childNodes[0] === undefined)) {
+			extraSubjectsCells[i].childNodes[0].remove();
+		}
+	}
+}
+
+/**
  * Проверка заполненности ячеек таблицы и вывод таблицы в pdf в случае полностью заполненной таблицы
  */
 function checkCells() {
@@ -239,4 +251,5 @@ window.onload=function() {
 };
 
 // TODO drag and drop out object (and move it to the right container) <------think about attachment with id
+// TODO remove shift clone event (or make clonable object but do not let it go twice to table) cloned id example=course-4_category-0c1
 // TODO statistic table with user hashcode id

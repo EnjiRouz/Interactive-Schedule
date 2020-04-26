@@ -88,12 +88,19 @@
 					</tr>
 					</tbody>
 
+					<tr>
+						<td colspan="2"><button onclick="resetTable()">Отчистить таблицу</button></td>
+						<td class="trash" colspan="5"><img src="../img/trash.png" alt="Корзина"></td>
+						<td colspan="2"><button onclick="checkCells()">Сохранить как pdf</button></td>
+					</tr>
+					<tr>
+						<td class="non-editable-table-cell" colspan="9" style="white-space: pre-line; padding: 10px;">Ниже представлен каталог доступных курсов, которые можно использовать при составлении индивидуального учебного плана.
+							Достаточно перетащить интересующий курс в соответствующее поле таблицы.
+							После составления индивидуального учебного плана его можно сохранить в формате PDF</td>
+					</tr>
 					<tbody id="subjectsOfChoiceTable" class="subjectsOfChoiceTable">
 					</tbody>
 				</table>
-			</div>
-			<div class="center-container">
-				<button onclick="checkCells()">Сохранить как pdf</button>
 			</div>
 		</div>
 	</body>

@@ -138,3 +138,14 @@ td{
 .hide{
 	display: none;
 }
+
+.trash{
+	background-color: lightgray;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+.trash img{
+	width: 30px;
+	height: 30px;
+}
