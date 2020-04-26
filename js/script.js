@@ -92,7 +92,7 @@ function initializeExtraSubjects(response) {
 	let categoriesArray = Array.from(categories);
 	for (let i=0; i<categoriesArray.length; i++) {
 		let category = getById("subjectsOfChoiceTable");
-		category.innerHTML += "<tr><td class='non-editable-table-cell clickable "+ Colors[i] +"' colspan='9' id='category-"+ i +"' onclick='hideElementsWithClass("+'"'+ Colors[i] + '"' +")'>"+ categoriesArray[i] +" (скрыть) </td></tr>";
+		category.innerHTML += "<tr><td class='non-editable-table-cell clickable "+ Colors[i] +"' colspan='9' id='category-"+ i +"' onclick='hideElementsWithClass("+'"'+ Colors[i] + '"' +")'>"+ categoriesArray[i] +" (показать) </td></tr>";
 
 		// подсчёт количества курсов для конкретной категории
 		let categoryCourses=[];
@@ -111,13 +111,13 @@ function initializeExtraSubjects(response) {
 			if(k % 9===0 && k!==0)
 				coursesContent += "</tr><tr>";
 
-			coursesContent += "<td class='can-be-hidden'><div id='course-" + k + "_category-" + i + "' class='draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
+			coursesContent += "<td class='can-be-hidden hide'><div id='course-" + k + "_category-" + i + "' class='draggable-content " + Colors[i] + "'>" + categoryCourses[k] + "</div></td>";
 
 			// добавление ячеек в конец таблицы
 			if(k===categoryCourses.length-1) {
 				if(k % 9!==0) {
 					for(let m=0;m<9-k%9-1;m++)
-						coursesContent += "<td class='can-be-hidden'><div class='non-editable-table-cell " + Colors[i] + "' style='display: none;'></div></td>"
+						coursesContent += "<td class='can-be-hidden hide'><div class='non-editable-table-cell " + Colors[i] + "' style='display: none;'></div></td>"
 				}
 				coursesContent += "</tr>";
 			}
@@ -132,15 +132,18 @@ function initializeExtraSubjects(response) {
 function checkCells() {
 	let extraSubjectsCells = getByClassName("extraSubject");
 	let nonEmptyCells = 0;
-	let userChoices=[];
+	let userChoices = [];
 	for (let i = 0; i < extraSubjectsCells.length; i++) {
-		if (extraSubjectsCells[i].hasChildNodes())
+		if (extraSubjectsCells[i].hasChildNodes() && !(extraSubjectsCells[i].childNodes[0] === undefined)) {
 			userChoices.push(extraSubjectsCells[i].childNodes[0].textContent);
 			nonEmptyCells++;
+		}
 	}
 
 	if (nonEmptyCells === extraSubjectsCells.length)
 		createPdf(userChoices);
+	else
+		alert("Остались незаполненные ячейки дополнительных дисциплин");
 }
 
 /**
@@ -164,7 +167,7 @@ function createPdf(userChoices) {
 	doc.autoTable({
 		head: [[
 			// заголовки
-			{ content: "Базовые дисциплины", rowSpan: 4, styles:{ halign: "center",	valign: "middle",}},
+			{ content: "Базовые дисциплины", rowSpan: 4, styles:{ halign: "center",	valign: "middle"}},
 			{ content: "1 курс", colSpan: 2, styles:{ halign: "center",	valign: "middle",}},
 			{ content: "2 курс", colSpan: 2, styles:{ halign: "center", valign: "middle",}},
 			{ content: "3 курс", colSpan: 2, styles:{ halign: "center", valign: "middle",}},
@@ -189,18 +192,32 @@ function createPdf(userChoices) {
 				baseSubjects[4].subjects, baseSubjects[5].subjects, baseSubjects[6].subjects,baseSubjects[7].subjects],
 
 			// дисциплины на выбор
-			[{},{content: "Дисциплины на выбор", colSpan:8,styles:{ halign: "center", valign: "middle",}}],
-			["Майнор 1",
+			[{},{content: "Дисциплины на выбор", colSpan:8,styles:{ halign: "center", valign: "middle", fillColor: [41, 128, 186], textColor: [255, 255, 255]}}],
+			[
+				{content: "Майнор 1", styles:{ halign: "center", valign: "middle", fillColor: [41, 128, 186], textColor: [255, 255, 255]}},
 				{content: "ВЫБОР НЕДОСТУПЕН", colSpan: 2, rowSpan:3,styles:{ halign: "center", valign: "middle",}},
-				{content: userChoices[0], rowSpan:3,styles:{ halign: "center", valign: "middle",}},
-				{content: userChoices[1], rowSpan:2,styles:{ halign: "center", valign: "middle",}},
-				{content: userChoices[2]},
-				{content: userChoices[3]},
-				{content: userChoices[4]},
-				{content: "ВЫБОР НЕДОСТУПЕН", rowSpan:3,styles:{ halign: "center", valign: "middle",}}],
+				{content: userChoices[0], rowSpan:3,styles:{ valign: "middle",}},
+				{content: userChoices[1], rowSpan:2,styles:{}},
+				{content: userChoices[2], styles:{}},
+				{content: userChoices[3], styles:{}},
+				{content: userChoices[4], styles:{}},
+				{content: "ВЫБОР НЕДОСТУПЕН", rowSpan:3,styles:{ halign: "center", valign: "middle",}}
+			],
 
-			["Майнор 2", {content: userChoices[5]},	{content: userChoices[6]},	{content: userChoices[7]},	],
-			["Майнор 3", {content: userChoices[8]},	{content: userChoices[9]}, {content: userChoices[10]},	{content: userChoices[11]},]
+			[
+				{content: "Майнор 2", styles:{ halign: "center", valign: "middle", fillColor: [41, 128, 186], textColor: [255, 255, 255]}},
+				{content: userChoices[5], styles:{}},
+				{content: userChoices[6], styles:{}},
+				{content: userChoices[7], styles:{}},
+			],
+
+			[
+				{content: "Майнор 3", styles:{ halign: "center", valign: "middle", fillColor: [41, 128, 186], textColor: [255, 255, 255]}},
+				{content: userChoices[8], styles:{}},
+				{content: userChoices[9], styles:{}},
+				{content: userChoices[10], styles:{}},
+				{content: userChoices[11], styles:{}},
+			]
 		],
 		styles: {
 			font: "TNR",
