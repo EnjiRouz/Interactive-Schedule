@@ -142,7 +142,7 @@ function initializeExtraSubjects(response) {
 }
 
 /**
- * Отчищение таблицы от выбранных курсов, чтобы можно было начать выбор заново
+ * Очищение таблицы от выбранных курсов, чтобы можно было начать выбор заново
  */
 function resetTable(){
 	let extraSubjectsCells = getByClassName("extraSubject");
