@@ -1,5 +1,7 @@
 # Interactive-Schedule
 
+Try it here: https://enjirouz.github.io/Interactive-Schedule/pages/index.html
+
 Interactive curriculum for Urfu IT students, where the following functions are implemented:
 * displaying basic subjects from the database;
 * displaying additional disciplines divided into categories, each of which has its own color;
